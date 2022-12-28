@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1025155376064",
+    "project_id": "proxy-killer-2356e",
+    "storage_bucket": "proxy-killer-2356e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1025155376064:android:385e0e785c5840f20dde25",
+        "android_client_info": {
+          "package_name": "com.alve.proxy_killer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1025155376064-6i0d6i647tpmft8hj4qfds8l945jlgvj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByjxmFekfs3n5iZypzbqfuRXCX6LyEaLI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1025155376064-6i0d6i647tpmft8hj4qfds8l945jlgvj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
