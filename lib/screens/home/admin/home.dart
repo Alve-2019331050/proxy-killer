@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proxy_killer/screens/home/admin/manage_course.dart';
 import 'package:proxy_killer/screens/home/admin/register_student.dart';
 import 'package:proxy_killer/screens/home/admin/register_teacher.dart';
 import 'package:proxy_killer/screens/models/menuItems.dart';
@@ -18,6 +19,7 @@ class _AdminHomeState extends State<AdminHome> {
     MenuItems(text: 'Dashboard',icon: Icons.dashboard_outlined,tap: Dashboard()),
     MenuItems(text: 'Register New Teacher',icon: Icons.app_registration_outlined,tap: RegisterTeacher()),
     MenuItems(text: 'Register New Student',icon: Icons.app_registration_outlined,tap: RegisterStudent()),
+    MenuItems(text: 'Manage Courses',icon: Icons.settings_applications_outlined, tap: ManageCourse()),
     MenuItems(text: 'Logout',icon: Icons.logout_outlined,tap: Dashboard())
   ];
   @override
