@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:proxy_killer/screens/auth_page.dart';
 import 'package:proxy_killer/screens/home/teacher/home.dart';
+import 'package:proxy_killer/screens/home/admin/home.dart';
+import 'package:proxy_killer/screens/home/admin/register_teacher.dart';
+import 'package:proxy_killer/screens/home/student/home.dart';
 import 'package:proxy_killer/screens/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 

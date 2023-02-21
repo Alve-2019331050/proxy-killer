@@ -6,7 +6,7 @@ import 'package:proxy_killer/components/my_button.dart';
 import 'auth_page.dart';
 
 class LoginPage extends StatefulWidget {
-  LoginPage({super.key});
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -196,6 +196,7 @@ class _LoginPageState extends State<LoginPage> {
 
             //sign in button
             MyButton(
+              buttonText: 'Log In',
               onTap: logUserIn,
             ),
             //or
