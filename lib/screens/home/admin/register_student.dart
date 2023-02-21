@@ -28,18 +28,51 @@ class _RegisterStudentState extends State<RegisterStudent> {
   Future signUp() async{
     //create user
     await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: _emailController.text.trim(), 
-        password: _passwordController.text.trim(),
+      email: _emailController.text.trim(),
+      password: _passwordController.text.trim(),
     );
+
+    //find uid
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+      //pop the loading circle
+      //Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
+    String? uid = FirebaseAuth.instance.currentUser?.uid;
+    FirebaseFirestore _db = FirebaseFirestore.instance;
+    //print(uid);
+    final userRef = _db.collection("users").doc(uid);
     //add user details
     addUserDetails(
       _nameController.text.trim(),
       _emailController.text.trim(),
+      userRef,
     );
+    //log out teacher
+    FirebaseAuth.instance.signOut();
+    //print('hello');
+    //signing admin
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: 'admin@gmail.com',
+        password: 'ph5078',
+      );
+      //pop the loading circle
+      //Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
+    //uid = FirebaseAuth.instance.currentUser?.uid;
+    //print(uid);
   }
-  
-  Future addUserDetails(String name, String email) async{
-    await FirebaseFirestore.instance.collection('users').add({
+
+  Future addUserDetails(String name, String email,final userRef) async{
+    await userRef.set({
       'name': name,
       'email': email,
       'role':'Student',
