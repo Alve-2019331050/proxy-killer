@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:proxy_killer/screens/home/teacher/attendance.dart';
 import 'package:proxy_killer/screens/home/teacher/dashboard.dart';
@@ -20,8 +21,13 @@ class _TeacherHomeState extends State<TeacherHome> {
     //to-do: change attendance icon
     MenuItems(text: 'Attendance',icon: Icons.calendar_month_sharp,tap: Attendance()),
     MenuItems(text: 'Settings',icon: Icons.settings,tap: Settings()),
-    MenuItems(text: 'Logout',icon: Icons.logout_outlined,tap: Dashboard())
   ];
+
+  //log out user method
+  void logUserOut() {
+    FirebaseAuth.instance.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,6 +41,7 @@ class _TeacherHomeState extends State<TeacherHome> {
           name: 'Teacher'
       ),
       appBar: AppBar(
+        backgroundColor:Colors.indigo,
         title: Text(
           '${currentPage.text}',
           style: TextStyle(
@@ -42,6 +49,9 @@ class _TeacherHomeState extends State<TeacherHome> {
             fontSize: 20.0,
           ),
         ),
+        actions: [
+          IconButton(onPressed: logUserOut, icon: const Icon(Icons.logout)),
+        ],
       ),
       body: currentPage.tap,
     );

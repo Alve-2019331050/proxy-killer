@@ -22,7 +22,7 @@ class _HelperDrawerState extends State<HelperDrawer> {
         children: [
           DrawerHeader(
             decoration: BoxDecoration(
-              color:Colors.blue
+              color:Colors.indigo
             ),
             child: Padding(
               padding: const EdgeInsets.only(top:15.0),
@@ -38,6 +38,7 @@ class _HelperDrawerState extends State<HelperDrawer> {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20.0,
+                      color: Colors.white,
                     ),
                   ),
                 ],
@@ -69,7 +70,7 @@ Widget menuItem(MenuItems item,Function changePage,BuildContext context){
         changePage(item);
       },
       child: Padding(
-        padding: EdgeInsets.all(15.0),
+        padding: EdgeInsets.fromLTRB(0, 15.0, 0, 15.0),
         child: Row(
           children: [
             Expanded(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proxy_killer/screens/auth_page.dart';
+import 'package:proxy_killer/screens/home/teacher/home.dart';
 import 'package:proxy_killer/screens/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AuthPage(),
+      home: TeacherHome(),
     );
   }
 }

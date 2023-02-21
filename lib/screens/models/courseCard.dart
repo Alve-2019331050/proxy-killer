@@ -1,13 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:proxy_killer/screens/home/teacher/enroll_student.dart';
+
+import '../shared/bottomSheet.dart';
 
 class CourseCard extends StatefulWidget {
-  const CourseCard({Key? key}) : super(key: key);
+  // const CourseCard({Key? key}) : super(key: key);
 
+  String name,dept,teacher,id;
+  int option;
+  CourseCard({required this.name,required this.id,required this.dept,required this.teacher,required this.option});
   @override
   State<CourseCard> createState() => _CourseCardState();
 }
 
 class _CourseCardState extends State<CourseCard> {
+
+  Future<dynamic> bottomSheet(){
+    return showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(30),
+          ),
+        ),
+        backgroundColor: Colors.blue[50],
+        builder: (context) => DraggableScrollableSheet(
+          expand:false,
+          builder: (context, scrollController) => SingleChildScrollView(
+            controller: scrollController,
+            child: createBottomSheet(dept:widget.dept,id:widget.id),
+          ),
+        )
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,7 +41,7 @@ class _CourseCardState extends State<CourseCard> {
       width:175,
       height:175,
       decoration: BoxDecoration(
-        color: Colors.grey[500],
+        color: Colors.indigo,
         borderRadius: BorderRadius.circular(15),
         // ignore: prefer_const_literals_to_create_immutables
         boxShadow: [
@@ -31,38 +57,44 @@ class _CourseCardState extends State<CourseCard> {
         padding: EdgeInsets.symmetric(horizontal:10,vertical:10),
         child: TextButton(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                'CSE 252',
+                widget.dept + ' ' + widget.id,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20.0,
-                  color: Colors.black,
+                  color: Colors.white,
                 ),
               ),
               SizedBox(height: 10.0),
               Text(
-                'Advanced Competitive Programming',
+                widget.name,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 15.0,
-                  color: Colors.black87,
+                  color: Colors.white,
                 ),
               ),
               SizedBox(height: 15.0),
               Text(
-                'Abid Hossain Mishal',
+                widget.teacher,
                 style: TextStyle(
                   fontSize: 15.0,
                   fontWeight: FontWeight.w500,
-                  color: Colors.black,
+                  color: Colors.white,
                 ),
               ),
             ],
           ),
           onPressed: (){
-            print('Clicked');
+            if(widget.option == 0) bottomSheet();
+            else if(widget.option == 1){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => enrollStudent(dept:widget.dept,id:widget.id)),
+              );
+            }
           },
         ),
       ),

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:proxy_killer/screens/home/admin/manage_course.dart';
 import 'package:proxy_killer/screens/home/admin/register_student.dart';
@@ -20,8 +21,13 @@ class _AdminHomeState extends State<AdminHome> {
     MenuItems(text: 'Register New Teacher',icon: Icons.app_registration_outlined,tap: RegisterTeacher()),
     MenuItems(text: 'Register New Student',icon: Icons.app_registration_outlined,tap: RegisterStudent()),
     MenuItems(text: 'Manage Courses',icon: Icons.settings_applications_outlined, tap: ManageCourse()),
-    MenuItems(text: 'Logout',icon: Icons.logout_outlined,tap: Dashboard())
   ];
+
+  //log out user method
+  void logUserOut() {
+    FirebaseAuth.instance.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,6 +41,7 @@ class _AdminHomeState extends State<AdminHome> {
         name: 'Admin'
       ),
       appBar: AppBar(
+        backgroundColor:Colors.indigo,
         title: Text(
           '${currentPage.text}',
           style: TextStyle(
@@ -42,6 +49,9 @@ class _AdminHomeState extends State<AdminHome> {
             fontSize: 20.0,
           ),
         ),
+        actions: [
+          IconButton(onPressed: logUserOut, icon: const Icon(Icons.logout)),
+        ],
       ),
       body: currentPage.tap,
     );

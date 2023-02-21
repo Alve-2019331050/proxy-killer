@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:proxy_killer/screens/home/student/dashboard.dart';
 import 'package:proxy_killer/screens/home/student/settings.dart';
@@ -17,8 +18,13 @@ class _StudentHomeState extends State<StudentHome> {
   List<MenuItems> items = [
     MenuItems(text: 'Dashboard',icon: Icons.dashboard_outlined,tap: Dashboard()),
     MenuItems(text: 'Settings',icon: Icons.settings,tap: Settings()),
-    MenuItems(text: 'Logout',icon: Icons.logout_outlined,tap: Dashboard())
   ];
+
+  //log out user method
+  void logUserOut() {
+    FirebaseAuth.instance.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,6 +45,9 @@ class _StudentHomeState extends State<StudentHome> {
             fontSize: 20.0,
           ),
         ),
+        actions: [
+          IconButton(onPressed: logUserOut, icon: const Icon(Icons.logout)),
+        ],
       ),
       body: currentPage.tap,
     );
