@@ -180,9 +180,9 @@ class _startClassState extends State<startClass> {
             SizedBox(height:100),
             Align(
               alignment: Alignment.center,
-              child: MyButton(onTap:(){
+              /*child: MyButton(onTap:(){
                 Navigator.pop(context);
-              })
+              })*/
             )
           ],
         ),
