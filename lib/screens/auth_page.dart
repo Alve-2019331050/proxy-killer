@@ -16,14 +16,14 @@ class AuthPage extends StatelessWidget{
       body: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context,snapshot){
-          if(snapshot.hasData && snapshot.data != null){
+          if(snapshot.hasData && snapshot.data!=null){
             //user logged in
             return StreamBuilder(stream: FirebaseFirestore.instance.
                 collection("users").doc(snapshot.data?.uid).snapshots(),
 
               builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-
-                if(snapshot.hasData && snapshot.data != null){
+                if(snapshot.hasData && snapshot.data?.data()!=null){
+                  // print(snapshot.data?.data());
                   Map<String, dynamic> user = snapshot.data?.data() as Map<String, dynamic>;
 
                   if(user['role'] == 'Student'){

@@ -45,10 +45,10 @@ class _RegisterStudentState extends State<RegisterStudent> {
     }
     String? uid = FirebaseAuth.instance.currentUser?.uid;
     FirebaseFirestore _db = FirebaseFirestore.instance;
-    //print(uid);
+    // print(uid);
     final userRef = _db.collection("users").doc(uid);
     //add user details
-    addUserDetails(
+    await addUserDetails(
       _nameController.text.trim(),
       _emailController.text.trim(),
       userRef,
@@ -72,6 +72,7 @@ class _RegisterStudentState extends State<RegisterStudent> {
   }
 
   Future addUserDetails(String name, String email,final userRef) async{
+    // print(userRef);
     await userRef.set({
       'name': name,
       'email': email,

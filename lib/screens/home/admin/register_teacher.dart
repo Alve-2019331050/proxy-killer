@@ -45,7 +45,7 @@ class _RegisterTeacherState extends State<RegisterTeacher> {
     //print(uid);
     final userRef = _db.collection("users").doc(uid);
     //add user details
-    addUserDetails(
+    await addUserDetails(
       _nameController.text.trim(),
       _emailController.text.trim(),
       userRef,

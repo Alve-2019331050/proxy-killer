@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:proxy_killer/screens/home/teacher/attendance.dart';
@@ -20,7 +21,7 @@ class _TeacherHomeState extends State<TeacherHome> {
     MenuItems(text: 'Dashboard',icon: Icons.dashboard_outlined,tap: Dashboard()),
     //to-do: change attendance icon
     MenuItems(text: 'Attendance',icon: Icons.calendar_month_sharp,tap: Attendance()),
-    MenuItems(text: 'Settings',icon: Icons.settings,tap: Settings()),
+    MenuItems(text: 'Settings',icon: Icons.settings,tap: teacherSetting()),
   ];
 
   //log out user method
@@ -30,15 +31,29 @@ class _TeacherHomeState extends State<TeacherHome> {
 
   @override
   Widget build(BuildContext context) {
+    String? uid = FirebaseAuth.instance.currentUser?.uid;
+
     return Scaffold(
-      drawer: HelperDrawer(
-          items:items,
-          changePage: (page){
-            setState((){
-              currentPage = page;
-            });
-          },
-          name: 'Teacher'
+      drawer: StreamBuilder(
+          stream: FirebaseFirestore.instance.collection('users')
+              .doc(uid).snapshots(),
+          builder: (context,AsyncSnapshot<DocumentSnapshot> snapshot){
+            if(snapshot.hasData){
+              Map<String, dynamic> user = snapshot.data?.data() as Map<String, dynamic>;
+              // print(user['name']);
+              String name = user['name'];
+              return HelperDrawer(
+                  items: items,
+                  changePage: (page){
+                    setState((){
+                      currentPage = page;
+                    });
+                  },
+                  name:name
+              );
+            }
+            else return const Material(child: Center(child: CircularProgressIndicator(),),);
+          }
       ),
       appBar: AppBar(
         backgroundColor:Colors.indigo,

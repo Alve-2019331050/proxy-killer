@@ -177,10 +177,10 @@ class _startClassState extends State<startClass> {
                 color: Color(0xFF363f93),
               ),
             ),
-            SizedBox(height:100),
+            SizedBox(height:80),
             Align(
               alignment: Alignment.center,
-              /*child: MyButton(onTap:(){
+              child: MyButton(buttonText:'Start Class',onTap:(){
                 Navigator.pop(context);
               })*/
             )
