@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:proxy_killer/screens/home/student/dashboard.dart';
@@ -17,7 +18,7 @@ class _StudentHomeState extends State<StudentHome> {
   MenuItems currentPage = MenuItems(text: 'Dashboard',icon: Icons.dashboard_outlined,tap: Dashboard());
   List<MenuItems> items = [
     MenuItems(text: 'Dashboard',icon: Icons.dashboard_outlined,tap: Dashboard()),
-    MenuItems(text: 'Settings',icon: Icons.settings,tap: Settings()),
+    MenuItems(text: 'Settings',icon: Icons.settings,tap: studentSetting()),
   ];
 
   //log out user method
@@ -27,17 +28,33 @@ class _StudentHomeState extends State<StudentHome> {
 
   @override
   Widget build(BuildContext context) {
+
+    String? uid = FirebaseAuth.instance.currentUser?.uid;
+
     return Scaffold(
-      drawer: HelperDrawer(
-          items: items,
-          changePage: (page){
-            setState((){
-              currentPage = page;
-            });
-          },
-          name: 'Student'
+      drawer: StreamBuilder(
+        stream: FirebaseFirestore.instance.collection('users')
+            .doc(uid).snapshots(),
+        builder: (context,AsyncSnapshot<DocumentSnapshot> snapshot){
+          if(snapshot.hasData){
+            Map<String, dynamic> user = snapshot.data?.data() as Map<String, dynamic>;
+            // print(user['name']);
+            String name = user['name'];
+            return HelperDrawer(
+                items: items,
+                changePage: (page){
+                  setState((){
+                    currentPage = page;
+                  });
+                },
+                name:name
+            );
+          }
+          else return const Material(child: Center(child: CircularProgressIndicator(),),);
+        }
       ),
       appBar: AppBar(
+        backgroundColor:Colors.indigo,
         title: Text(
           '${currentPage.text}',
           style: TextStyle(
