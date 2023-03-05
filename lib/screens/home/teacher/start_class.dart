@@ -182,7 +182,7 @@ class _startClassState extends State<startClass> {
               alignment: Alignment.center,
               child: MyButton(buttonText:'Start Class',onTap:(){
                 Navigator.pop(context);
-              })*/
+              })
             )
           ],
         ),

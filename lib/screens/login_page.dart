@@ -199,6 +199,7 @@ class _LoginPageState extends State<LoginPage> {
               buttonText: 'Log In',
               onTap: logUserIn,
             ),
+
             //or
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -227,6 +228,7 @@ class _LoginPageState extends State<LoginPage> {
                 ],
               ),
             ),
+
             //register
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -245,9 +247,15 @@ class _LoginPageState extends State<LoginPage> {
                       fontSize: 20,
                       fontWeight: FontWeight.bold),
                 ),
+
               ],
+
             ),
-          ]),
+          ]
+
+        ),
+
+
         ),
       ),
     );
