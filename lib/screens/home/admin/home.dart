@@ -41,7 +41,7 @@ class _AdminHomeState extends State<AdminHome> {
         name: 'Admin'
       ),
       appBar: AppBar(
-        backgroundColor:Colors.indigo,
+        backgroundColor:Color(0xFF001a33),
         title: Text(
           '${currentPage.text}',
           style: TextStyle(

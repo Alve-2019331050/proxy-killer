@@ -33,7 +33,7 @@ class _ManageCourseState extends State<ManageCourse> {
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         side: BorderSide(width:5, color:Colors.blueGrey),
-                        backgroundColor: Colors.indigo,
+                        backgroundColor: Color(0xFF001a33),
                         elevation: 3,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30)
@@ -55,7 +55,7 @@ class _ManageCourseState extends State<ManageCourse> {
                 style: TextStyle(
                   fontSize: 18.0,
                   fontWeight: FontWeight.bold,
-                  color: Colors.indigo,
+                  color: Color(0xFF001a33),
                 ),
               ),
               SizedBox(height:10.0),

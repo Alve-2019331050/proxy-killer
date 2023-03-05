@@ -140,114 +140,68 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: Colors.blue[50],
       body: SafeArea(
-        child: Center(
-          child: Column(children: [
-            const SizedBox(height: 50),
-            //logo
-            const Icon(
-              Icons.lock,
-              size: 100,
-            ),
-
-            const SizedBox(height: 50),
-
-            //welcome text
-            const Text(
-              'Welcome To ProxyKiller...',
-              style: TextStyle(
-                color: Colors.indigo,
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
+        child: SingleChildScrollView(
+          child: Center(
+            child: Column(children: [
+              const SizedBox(height: 50),
+              //logo
+              const Icon(
+                Icons.lock,
+                size: 100,
               ),
-            ),
 
-            const SizedBox(height: 25),
+              const SizedBox(height: 50),
 
-            //username textfield
-            MyTextField(
-              hintText: "Username",
-              controller: emailController,
-              obscureText: false,
-            ),
-
-            //password textfield
-            MyTextField(
-              controller: passwordController,
-              hintText: 'Password',
-              obscureText: true,
-            ),
-
-            const SizedBox(height: 10),
-
-            //forgot password?
-            Padding(
-              padding: const EdgeInsets.only(left: 210.0),
-              child: Text(
-                'Forgot Password?',
+              //welcome text
+              const Text(
+                'Welcome To ProxyKiller...',
                 style: TextStyle(
-                  fontSize: 15,
-                  color: Colors.red[500],
-                  fontStyle: FontStyle.italic,
+                  color: Colors.indigo,
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
 
-            const SizedBox(height: 25),
+              const SizedBox(height: 25),
 
-            //sign in button
-            MyButton(
-              buttonText: 'Log In',
-              onTap: logUserIn,
-            ),
-            //or
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Row(
-                children: [
-                  Expanded(
-                      child: Divider(
-                    thickness: 0.5,
-                    color: Colors.indigo[300],
-                  )),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Text(
-                      'or',
-                      style: TextStyle(
-                          color: Colors.indigo,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16),
-                    ),
-                  ),
-                  Expanded(
-                      child: Divider(
-                    thickness: 0.5,
-                    color: Colors.indigo[300],
-                  )),
-                ],
+              //username textfield
+              MyTextField(
+                hintText: "Email",
+                controller: emailController,
+                obscureText: false,
               ),
-            ),
-            //register
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Not a member?',
-                    style: TextStyle(
-                      color: Colors.indigo[300],
-                      fontStyle: FontStyle.italic,
-                      fontSize: 12,
-                    )),
-                const SizedBox(width: 4),
-                Text(
-                  'Register now',
+
+              //password textfield
+              MyTextField(
+                controller: passwordController,
+                hintText: 'Password',
+                obscureText: true,
+              ),
+
+              const SizedBox(height: 10),
+
+              //forgot password?
+              Padding(
+                padding: const EdgeInsets.only(left: 210.0),
+                child: Text(
+                  'Forgot Password?',
                   style: TextStyle(
-                      color: Colors.indigo[900],
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
+                    fontSize: 15,
+                    color: Colors.red[500],
+                    fontStyle: FontStyle.italic,
+                  ),
                 ),
-              ],
-            ),
-          ]),
+              ),
+
+              const SizedBox(height: 25),
+
+              //sign in button
+              MyButton(
+                buttonText: 'Log In',
+                onTap: logUserIn,
+              ),
+            ]),
+          ),
         ),
       ),
     );

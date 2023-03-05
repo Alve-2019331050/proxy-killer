@@ -34,6 +34,7 @@ class _TeacherHomeState extends State<TeacherHome> {
     String? uid = FirebaseAuth.instance.currentUser?.uid;
 
     return Scaffold(
+      backgroundColor: Colors.blue[50],
       drawer: StreamBuilder(
           stream: FirebaseFirestore.instance.collection('users')
               .doc(uid).snapshots(),
@@ -56,7 +57,7 @@ class _TeacherHomeState extends State<TeacherHome> {
           }
       ),
       appBar: AppBar(
-        backgroundColor:Colors.indigo,
+        backgroundColor:Color(0xFF001a33),
         title: Text(
           '${currentPage.text}',
           style: TextStyle(

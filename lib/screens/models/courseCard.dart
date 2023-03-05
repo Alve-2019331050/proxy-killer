@@ -41,7 +41,7 @@ class _CourseCardState extends State<CourseCard> {
       width:175,
       height:175,
       decoration: BoxDecoration(
-        color: Colors.indigo,
+        color: Color(0xFF001a33),
         borderRadius: BorderRadius.circular(15),
         // ignore: prefer_const_literals_to_create_immutables
         boxShadow: [

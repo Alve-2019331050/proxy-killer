@@ -38,7 +38,7 @@ class _createBottomSheetState extends State<createBottomSheet> {
           child: Text(
               value,
               style: TextStyle(
-                color:Colors.indigo,
+                color:Color(0xFF001a33),
                 fontWeight: FontWeight.bold,
                 fontSize: 19.0,
               ),
@@ -74,7 +74,7 @@ class _createBottomSheetState extends State<createBottomSheet> {
                 style: TextStyle(
                   fontSize: 22.0,
                   fontWeight: FontWeight.bold,
-                  color: Colors.indigo,
+                  color: Color(0xFF001a33),
                 ),
               ),
               SizedBox(height:30.0),
@@ -93,7 +93,7 @@ class _createBottomSheetState extends State<createBottomSheet> {
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     side: BorderSide(width:3, color:Colors.blueGrey),
-                    backgroundColor: Colors.indigo,
+                    backgroundColor: Color(0xFF001a33),
                     elevation: 3,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)

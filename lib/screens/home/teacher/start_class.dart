@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:proxy_killer/components/my_button.dart';
 
@@ -40,7 +43,7 @@ class _startClassState extends State<startClass> {
           child: Text(
               value,
               style: TextStyle(
-                color:Colors.indigo,
+                color:Color(0xFF001a33),
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
@@ -50,10 +53,54 @@ class _startClassState extends State<startClass> {
     );
   }
 
+  final _timePickerTheme = TimePickerThemeData(
+    backgroundColor: Colors.blue[50],
+    // hourMinuteShape: const RoundedRectangleBorder(
+    //   borderRadius: BorderRadius.all(Radius.circular(0)),
+    //   side: BorderSide(color: Colors.blue, width: 1),
+    // ),
+    dayPeriodBorderSide: const BorderSide(color: Colors.black26, width: 2),
+    // dayPeriodColor: Colors.blue[900],
+    // shape: const RoundedRectangleBorder(
+    //   borderRadius: BorderRadius.all(Radius.circular(8)),
+    //   side: BorderSide(color: Color(0xff5e83ba), width: 4),
+    // ),
+    // dayPeriodTextColor: Colors.white,
+    dayPeriodShape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(8)),
+      side: BorderSide(color: Colors.black26, width: 4),
+    ),
+    hourMinuteColor: MaterialStateColor.resolveWith((states) =>
+    states.contains(MaterialState.selected) ? Colors.blue.shade900 : Colors.black26),
+    hourMinuteTextColor: MaterialStateColor.resolveWith(
+            (states) => states.contains(MaterialState.selected) ? Colors.white : Colors.blue.shade900),
+    dialHandColor: Colors.blue[900],
+    dialBackgroundColor: Colors.black26,
+    hourMinuteTextStyle: const TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
+    dayPeriodTextStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+    entryModeIconColor: Colors.black87,
+  );
+
   void _showTimePickerEnd(){
     showTimePicker(
         context: context,
         initialTime: TimeOfDay.now(),
+        builder: (context, child) {
+          return Theme(
+            data: Theme.of(context).copyWith(
+              // This uses the _timePickerTheme defined above
+              timePickerTheme: _timePickerTheme,
+              textButtonTheme: TextButtonThemeData(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateColor.resolveWith((states) => Colors.black87),
+                  foregroundColor: MaterialStateColor.resolveWith((states) => Colors.white),
+                  overlayColor: MaterialStateColor.resolveWith((states) => Colors.black87),
+                ),
+              ),
+            ),
+            child: child!,
+          );
+        },
     ).then((value){
       setState(() {
         _endTimeOfDay = value!;
@@ -65,6 +112,22 @@ class _startClassState extends State<startClass> {
     showTimePicker(
       context: context,
       initialTime: TimeOfDay.now(),
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            // This uses the _timePickerTheme defined above
+            timePickerTheme: _timePickerTheme,
+            textButtonTheme: TextButtonThemeData(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateColor.resolveWith((states) => Colors.black87),
+                foregroundColor: MaterialStateColor.resolveWith((states) => Colors.white),
+                overlayColor: MaterialStateColor.resolveWith((states) => Colors.black87),
+              ),
+            ),
+          ),
+          child: child!,
+        );
+      },
     ).then((value){
       setState(() {
         _startTimeOfDay = value!;
@@ -74,11 +137,12 @@ class _startClassState extends State<startClass> {
 
   @override
   Widget build(BuildContext context) {
+    String? uid = FirebaseAuth.instance.currentUser?.uid;
     return Scaffold(
       backgroundColor: Colors.blue[50],
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: Colors.indigo,
+          color: Color(0xFF001a33),
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -93,7 +157,7 @@ class _startClassState extends State<startClass> {
               'It\'s time to Start\na new Class!',
               style: TextStyle(
                   fontSize: 30,
-                  color:Color(0xFF363f93),
+                  color:Color(0xFF001a33),
               ),
             ),
             SizedBox(height:30),
@@ -103,20 +167,30 @@ class _startClassState extends State<startClass> {
                   'Course :',
                   style: TextStyle(
                     fontSize: 25,
-                    color:Color(0xFF363f93),
+                    color:Color(0xFF001a33),
                   ),
                 ),
                 SizedBox(width: 10,),
                 StreamBuilder(
-                  stream: FirebaseFirestore.instance.collection('courses').snapshots(),
-                  builder: (context, AsyncSnapshot<QuerySnapshot> snapshot){
+                  stream: FirebaseFirestore.instance.collection('users').doc(uid).snapshots(),
+                  builder: (context,AsyncSnapshot<DocumentSnapshot> snapshot){
                     if(snapshot.hasData){
-                      return buildDropDown(snapshot.data);
+                      var object = snapshot.data!;
+                      String name = object['name'];
+                      return StreamBuilder(
+                        stream: FirebaseFirestore.instance.collection('courses').where('teacher',isEqualTo: name).snapshots(),
+                        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot){
+                          if(snapshot.hasData){
+                            return buildDropDown(snapshot.data);
+                          }
+                          else{
+                            return Container();
+                          }
+                        },
+                      );
                     }
-                    else{
-                      return Container();
-                    }
-                  },
+                    else return const Material(child: Center(child: CircularProgressIndicator(),),);
+                  }
                 ),
               ],
             ),
@@ -127,14 +201,14 @@ class _startClassState extends State<startClass> {
                   'Pick Starting time :',
                   style: TextStyle(
                     fontSize: 25,
-                    color: Color(0xFF363f93),
+                    color: Color(0xFF001a33),
                   ),
                 ),
                 SizedBox(width:10),
                 ElevatedButton(
                     onPressed: _showTimePickerStart,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF363f93),
+                      backgroundColor: Color(0xFF001a33),
                     ),
                     child: Text(
                       _startTimeOfDay.format(context).toString(),
@@ -152,14 +226,14 @@ class _startClassState extends State<startClass> {
                   'Pick Ending time :',
                   style: TextStyle(
                     fontSize: 25,
-                    color: Color(0xFF363f93),
+                    color: Color(0xFF001a33),
                   ),
                 ),
                 SizedBox(width:10),
                 ElevatedButton(
                   onPressed: _showTimePickerEnd,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF363f93),
+                    backgroundColor: Color(0xFF001a33),
                   ),
                   child: Text(
                     _endTimeOfDay.format(context).toString(),
@@ -174,13 +248,16 @@ class _startClassState extends State<startClass> {
               '       (Allowed)',
               style: TextStyle(
                 fontSize: 20,
-                color: Color(0xFF363f93),
+                color: Color(0xFF001a33),
               ),
             ),
             SizedBox(height:80),
             Align(
               alignment: Alignment.center,
               child: MyButton(buttonText:'Start Class',onTap:(){
+                print(_startTimeOfDay);
+                print(_endTimeOfDay);
+                print(dropDownValue);
                 Navigator.pop(context);
               })
             )

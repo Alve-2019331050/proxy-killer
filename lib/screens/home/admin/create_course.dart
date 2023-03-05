@@ -49,7 +49,7 @@ class _createCourseState extends State<createCourse> {
       backgroundColor: Colors.blue[50],
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: Colors.indigo,
+          color: Color(0xFF001a33),
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -63,8 +63,8 @@ class _createCourseState extends State<createCourse> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height:15.0),
-                Text("Create a new", style: TextStyle(fontSize: 30, color:Color(0xFF363f93)),),
-                Text("Course !", style: TextStyle(fontSize: 30, color:Color(0xFF363f93)),),
+                Text("Create a new", style: TextStyle(fontSize: 30, color:Color(0xFF001a33)),),
+                Text("Course !", style: TextStyle(fontSize: 30, color:Color(0xFF001a33)),),
 
                 SizedBox(height:30.0),
                 TextFormField(
@@ -105,11 +105,11 @@ class _createCourseState extends State<createCourse> {
                   children: [
                     Text(
                       'Create Course',
-                      style: TextStyle(fontSize:30,color:Color(0xFF363f93)),
+                      style: TextStyle(fontSize:30,color:Color(0xFF001a33)),
                     ),
                     CircleAvatar(
                       radius:30,
-                      backgroundColor: Color(0xFF363f93),
+                      backgroundColor: Color(0xFF001a33),
                       child: IconButton(
                           onPressed: (){
                             Map<String,dynamic> data = {
