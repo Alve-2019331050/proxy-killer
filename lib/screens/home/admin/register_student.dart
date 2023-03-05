@@ -53,7 +53,7 @@ class _RegisterStudentState extends State<RegisterStudent> {
       _emailController.text.trim(),
       userRef,
     );
-    //log out teacher
+    //log out student
     FirebaseAuth.instance.signOut();
     //print('hello');
     //signing admin

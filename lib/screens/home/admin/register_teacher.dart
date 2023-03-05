@@ -10,14 +10,6 @@ class RegisterTeacher extends StatefulWidget {
   State<RegisterTeacher> createState() => _RegisterTeacherState();
 }
 
-/*class UserHelper{
-  static FirebaseFirestore _db = FirebaseFirestore.instance;
-  static saveUser(User user) async{
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    Map<string,
-  }
-}
-*/
 class _RegisterTeacherState extends State<RegisterTeacher> {
   //Text controllers
   final TextEditingController _nameController = TextEditingController();
@@ -45,8 +37,6 @@ class _RegisterTeacherState extends State<RegisterTeacher> {
         email: _emailController.text,
         password: _passwordController.text,
       );
-      //pop the loading circle
-      //Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       print(e);
     }

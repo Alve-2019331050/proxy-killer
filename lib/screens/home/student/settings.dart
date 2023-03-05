@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../shared/settings_screen.dart';
+
 class studentSetting extends StatefulWidget {
   const studentSetting({Key? key}) : super(key: key);
 
@@ -10,7 +12,7 @@ class studentSetting extends StatefulWidget {
 class _studentSettingState extends State<studentSetting> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const SettingsScreen();
   }
 }
 
