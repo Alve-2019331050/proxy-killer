@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:proxy_killer/components/my_textfield.dart';
 import 'package:proxy_killer/components/my_button.dart';
+import 'package:proxy_killer/screens/shared/change_password.dart';
 
 import 'auth_page.dart';
 
@@ -94,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                       'Incorrect Password',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 30.0,
+                        fontSize: 20.0,
                       ),
                     ),
                     SizedBox(height: 15.0),
@@ -148,6 +149,7 @@ class _LoginPageState extends State<LoginPage> {
               const Icon(
                 Icons.lock,
                 size: 100,
+                color: Color(0xFF001a33),
               ),
 
               const SizedBox(height: 50),
@@ -159,6 +161,7 @@ class _LoginPageState extends State<LoginPage> {
                   color: Colors.indigo,
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
+                  //fontStyle: FontStyle.italic,
                 ),
               ),
 
@@ -181,18 +184,29 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 10),
 
               //forgot password?
-              Padding(
-                padding: const EdgeInsets.only(left: 210.0),
-                child: Text(
-                  'Forgot Password?',
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.red[500],
-                    fontStyle: FontStyle.italic,
+              Row(
+                children: [
+                  GestureDetector(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 210.0),
+                    child: Text(
+                      'Forgot Password?',
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.red[500],
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
                   ),
-                ),
+                  onTap: (){
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context)=>const ChangePassword())
+                    );
+                  },
+                  ),
+                ],
               ),
-
               const SizedBox(height: 25),
 
               //sign in button
