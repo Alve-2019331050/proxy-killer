@@ -16,12 +16,14 @@ class _RegisterStudentState extends State<RegisterStudent> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _regNumberController = TextEditingController();
 
   @override
   void dispose(){
     _nameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+    _regNumberController.dispose();
     super.dispose();
   }
   
@@ -51,6 +53,7 @@ class _RegisterStudentState extends State<RegisterStudent> {
     await addUserDetails(
       _nameController.text.trim(),
       _emailController.text.trim(),
+      _regNumberController.text.trim(),
       userRef,
     );
     //log out student
@@ -71,11 +74,12 @@ class _RegisterStudentState extends State<RegisterStudent> {
     //print(uid);
   }
 
-  Future addUserDetails(String name, String email,final userRef) async{
+  Future addUserDetails(String name, String email,String regNumber,final userRef) async{
     // print(userRef);
     await userRef.set({
       'name': name,
       'email': email,
+      'registration number':regNumber,
       'role':'Student',
     });
   }
@@ -132,6 +136,30 @@ class _RegisterStudentState extends State<RegisterStudent> {
                 ),
               ),
               const SizedBox(height: 20,),
+
+
+              //Registration Number TextField
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: TextField(
+                  controller: _regNumberController,
+                  decoration: const InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.indigoAccent),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    hintText: 'Registration Number',
+                    fillColor: Colors.white,
+                    filled: true,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20,),
+
               //Email TextField
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
