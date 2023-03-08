@@ -19,13 +19,10 @@ class GetStudentInfo extends StatelessWidget {
         if(snapshot.connectionState == ConnectionState.done){
             Map<String,dynamic> data = snapshot.data!.data() as Map<String,dynamic>;
             return Text(
-              'role : ${data['role']}\nemail : ${data['email']}',
-              /*
+              ' ${data['registration number']}\n ${data['name']}',
               style: TextStyle(
-                color: Colors.white,
+                fontSize: 16.0,
               ),
-
-               */
             );
 
         }
