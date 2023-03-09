@@ -98,18 +98,19 @@ class _RegisterStudentState extends State<RegisterStudent> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
+                  SizedBox(height: 50,),
                   Icon(
-                    Icons.note_add,
+                    Icons.people_alt_rounded,
                     size: 100,
-                    color: Colors.indigo,
+                    color: Color(0xFF001a33),
                   ),
                   SizedBox(height: 30,),
                   Text(
-                    "Create an Account",
+                    "Fill up student Information",
                     style: TextStyle(
-                      fontSize: 35,
-                      fontWeight: FontWeight.bold,
-                      color : Colors.indigo,
+                      fontSize: 25,
+                      //fontWeight: FontWeight.bold,
+                      color : Color(0xFF001a33),
                     ),
                   ),
                   SizedBox(height: 20,),
@@ -123,11 +124,11 @@ class _RegisterStudentState extends State<RegisterStudent> {
                   decoration: const InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderRadius: BorderRadius.all(Radius.circular(50)),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.indigoAccent),
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderSide: BorderSide(color: Color(0xFF001a33)),
+                      borderRadius: BorderRadius.all(Radius.circular(50)),
                     ),
                     hintText: 'Name',
                     fillColor: Colors.white,
@@ -146,11 +147,11 @@ class _RegisterStudentState extends State<RegisterStudent> {
                   decoration: const InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderRadius: BorderRadius.all(Radius.circular(50)),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.indigoAccent),
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderSide: BorderSide(color: Color(0xFF001a33)),
+                      borderRadius: BorderRadius.all(Radius.circular(50)),
                     ),
                     hintText: 'Registration Number',
                     fillColor: Colors.white,
@@ -168,11 +169,11 @@ class _RegisterStudentState extends State<RegisterStudent> {
                   decoration: const InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderRadius: BorderRadius.all(Radius.circular(50)),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.indigoAccent),
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderSide: BorderSide(color: Color(0xFF001a33)),
+                      borderRadius: BorderRadius.all(Radius.circular(50)),
                     ),
                     hintText: 'Email',
                     fillColor: Colors.white,
@@ -189,11 +190,11 @@ class _RegisterStudentState extends State<RegisterStudent> {
                   decoration: const InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderRadius: BorderRadius.all(Radius.circular(50)),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.indigoAccent),
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderSide: BorderSide(color: Color(0xFF001a33)),
+                      borderRadius: BorderRadius.all(Radius.circular(50)),
                     ),
                     hintText: 'Password',
                     fillColor: Colors.white,
