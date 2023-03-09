@@ -11,8 +11,24 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
 
+  Future getStudentData() async{
+    var data = await FirebaseFirestore.instance.collection("users").where('role',isEqualTo:'Student').get();
+    return data.docs;
+  }
+
+  Future getTeacherData() async{
+    var data = await FirebaseFirestore.instance.collection("users").where('role',isEqualTo:'Teacher').get();
+    return data.docs;
+  }
+
+  Future getCourseData() async{
+    var data = await FirebaseFirestore.instance.collection("courses").get();
+    return data.docs;
+  }
+
   @override
   Widget build(BuildContext context) {
+    int student = 0,teacher = 0;
 
     return Scaffold(
       backgroundColor: const Color(0xFFE3F1FD),
@@ -32,88 +48,109 @@ class _DashboardState extends State<Dashboard> {
                         SizedBox(
                           width: 160.0,
                           height: 220.0,
-                          child: Card(
-                            color: const Color.fromARGB(0, 0, 0, 0),
-                            //elevation: 2.0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            child: Center(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  children: const [
-                                    Icon(
-                                      Icons.people,
-                                      color: Color(0xFFE3F1FD),
-                                      size: 80.0,
-                                    ),
-                                    SizedBox(
-                                      height: 20.0,
-                                    ),
-                                    Text(
-                                      "Student",
-                                      style: TextStyle(
-                                        color: Color(0xFF001a33),
-                                        fontSize: 25.0,
+                          child: FutureBuilder(
+                            future:getStudentData(),
+                            builder:(context,snapshot){
+                              if(snapshot.connectionState == ConnectionState.waiting){
+                                return const Material(child: Center(child: CircularProgressIndicator(),),);
+                              }
+                              else {
+                                print(snapshot.data.length);
+                                return Card(
+                                  color: const Color.fromARGB(0, 0, 0, 0),
+                                  //elevation: 2.0,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  child: Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        children: [
+                                          Icon(
+                                            Icons.people,
+                                            color: Color(0xFFE3F1FD),
+                                            size: 80.0,
+                                          ),
+                                          SizedBox(
+                                            height: 20.0,
+                                          ),
+                                          Text(
+                                            "Student",
+                                            style: TextStyle(
+                                              color: Color(0xFF001a33),
+                                              fontSize: 25.0,
+                                            ),
+                                          ),
+                                          SizedBox(height: 10.0),
+                                          Text(
+                                            snapshot.data.length.toString(),
+                                            style: TextStyle(
+                                              color: Color(0xFF001a33),
+                                              fontSize: 40.0,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                    SizedBox(height: 10.0),
-                                    Text(
-                                      "47",
-                                      style: TextStyle(
-                                        color: Color(0xFF001a33),
-                                        fontSize: 40.0,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
+                                  ),
+                                );
+                              }
+                            }
                           ),
                         ),
                         SizedBox(
                           width: 160.0,
                           height: 220.0,
-                          child: Card(
-                            color: const Color.fromARGB(0, 0, 0, 0),
-                            //elevation: 2.0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            child: Center(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  children: const [
-                                    Icon(
-                                      Icons.people,
-                                      color: Color(0xFFE3F1FD),
-                                      size: 80.0,
-                                    ),
-                                    SizedBox(
-                                      height: 20.0,
-                                    ),
-                                    Text(
-                                      "Student",
-                                      style: TextStyle(
-                                        color: Color(0xFF001a33),
-                                        fontSize: 25.0,
+                          child: FutureBuilder(
+                            future: getTeacherData(),
+                            builder: (context,snapshot){
+                              if(snapshot.connectionState == ConnectionState.waiting){
+                                return const Material(child: Center(child: CircularProgressIndicator(),),);
+                              }
+                              else{
+                                return Card(
+                                  color: const Color.fromARGB(0, 0, 0, 0),
+                                  //elevation: 2.0,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  child: Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        children: [
+                                          Icon(
+                                            Icons.people,
+                                            color: Color(0xFFE3F1FD),
+                                            size: 80.0,
+                                          ),
+                                          SizedBox(
+                                            height: 20.0,
+                                          ),
+                                          Text(
+                                            "Teacher",
+                                            style: TextStyle(
+                                              color: Color(0xFF001a33),
+                                              fontSize: 25.0,
+                                            ),
+                                          ),
+                                          SizedBox(height: 10.0),
+                                          Text(
+                                            snapshot.data.length.toString(),
+                                            style: TextStyle(
+                                              color: Color(0xFF001a33),
+                                              fontSize: 40.0,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                    SizedBox(height: 10.0),
-                                    Text(
-                                      "47",
-                                      style: TextStyle(
-                                        color: Color(0xFF001a33),
-                                        fontSize: 40.0,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
+                                  )
+                                );
+                              }
+                            }
+                          )
                         ),
                       ],
                     ),
@@ -122,47 +159,56 @@ class _DashboardState extends State<Dashboard> {
                         SizedBox(
                           width: 160.0,
                           height: 220.0,
-                          child: Card(
-                            color: const Color.fromARGB(0, 0, 0, 0),
-                            //elevation: 2.0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            child: Center(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  children: const [
-                                    Icon(
-                                      Icons.people,
-                                      color: Color(0xFFE3F1FD),
-                                      size: 80.0,
-                                    ),
-                                    SizedBox(
-                                      height: 20.0,
-                                    ),
-                                    Text(
-                                      "Student",
-                                      style: TextStyle(
-                                        color: Color(0xFF001a33),
-                                        fontSize: 25.0,
+                          child:FutureBuilder(
+                            future: getCourseData(),
+                            builder:(context,snapshot){
+                              if(snapshot.connectionState == ConnectionState.waiting){
+                                return const Material(child: Center(child: CircularProgressIndicator(),),);
+                              }
+                              else{
+                                return Card(
+                                  color: const Color.fromARGB(0, 0, 0, 0),
+                                  //elevation: 2.0,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  child: Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        children: [
+                                          Icon(
+                                            Icons.school,
+                                            color: Color(0xFFE3F1FD),
+                                            size: 80.0,
+                                          ),
+                                          SizedBox(
+                                            height: 20.0,
+                                          ),
+                                          Text(
+                                            "Course",
+                                            style: TextStyle(
+                                              color: Color(0xFF001a33),
+                                              fontSize: 25.0,
+                                            ),
+                                          ),
+                                          SizedBox(height: 10.0),
+                                          Text(
+                                            snapshot.data.length.toString(),
+                                            style: TextStyle(
+                                              color: Color(0xFF001a33),
+                                              fontSize: 40.0,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                    SizedBox(height: 10.0),
-                                    Text(
-                                      "47",
-                                      style: TextStyle(
-                                        color: Color(0xFF001a33),
-                                        fontSize: 40.0,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
+                                  ),
+                                );
+                              }
+                            }
+                          )
                         ),
-
                       ],
                     ),
                   ],
