@@ -181,7 +181,7 @@ class _showAttendanceState extends State<showAttendance> {
                                     SizedBox(height: 3),
                                     FittedBox(
                                       child: Text(
-                                        'You Appeared',
+                                        'Appeared',
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 25,
