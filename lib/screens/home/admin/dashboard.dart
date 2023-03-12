@@ -28,7 +28,6 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    int student = 0,teacher = 0;
 
     return Scaffold(
       backgroundColor: const Color(0xFFE3F1FD),

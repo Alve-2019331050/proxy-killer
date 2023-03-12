@@ -98,7 +98,7 @@ class _RegisterStudentState extends State<RegisterStudent> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
-                  SizedBox(height: 50,),
+                  SizedBox(height: 30,),
                   Icon(
                     Icons.people_alt_rounded,
                     size: 100,

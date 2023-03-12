@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -22,7 +23,8 @@ class _enrollStudentState extends State<enrollStudent> {
   
   //get docIDs
   Future getDocId() async{
-    await FirebaseFirestore.instance.collection('users').get().then(
+    await FirebaseFirestore.instance.collection('users').where('role',isEqualTo: 'Student')
+        .get().then(
         (snapshot) => snapshot.docs.forEach((document) {
           print(document.reference);
           docIDs.add(document.reference.id);
@@ -33,8 +35,49 @@ class _enrollStudentState extends State<enrollStudent> {
   //keeps selected student here or do whatever you want (for Alve)
   List<String> selectedStudent =  [];
 
+  Future removeStudent(dynamic docId) async{
+    var ref = await FirebaseFirestore.instance.collection('users').doc(docId).get();
+    String reg = ref['registration number'];
+    String course = widget.dept + ' '+ widget.id;
+    await FirebaseFirestore.instance.collection('takes').where('registration number',isEqualTo: reg).
+      where('course',isEqualTo:course).get().then((snapshot)=>snapshot.docs.forEach((document) {
+        document.reference.delete();
+    }));
+  }
+
+  Future addStudent(dynamic docId) async{
+    var ref = await FirebaseFirestore.instance.collection('users').doc(docId).get();
+    String reg = ref['registration number'];
+    String course = widget.dept + ' '+ widget.id;
+    var cur_ref = await FirebaseFirestore.instance.collection('courses').doc(course).get();
+    var new_ref = await FirebaseFirestore.instance.collection('takes');
+    Map<String,dynamic> data = {
+      'registration number': reg,
+      'course': course,
+      'docID': docId,
+      'name': cur_ref['name'],
+      'teacher':cur_ref['teacher'],
+    };
+    await new_ref.add(data);
+  }
+
+  void getSelectedStudent() async{
+    String course = widget.dept + ' '+ widget.id;
+    await FirebaseFirestore.instance.collection('takes').where('course',isEqualTo:course).get().then((snapshot)=>
+      snapshot.docs.forEach((element) {
+        selectedStudent.add(element['docID']);
+      }));
+  }
+
+  @override
+  void initState(){
+    super.initState();
+    getSelectedStudent();
+  }
+
   @override
   Widget build(BuildContext context) {
+    docIDs.clear();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF001a33),
@@ -56,7 +99,7 @@ class _enrollStudentState extends State<enrollStudent> {
                       future: getDocId(),
                       builder: (context,snapshot) {
                         return ListView.builder(
-                            //itemCount: 5,
+                            itemCount: docIDs.length,
                             itemBuilder: (BuildContext context, int index) {
                             return InkWell(
                               child: Padding(
@@ -85,7 +128,14 @@ class _enrollStudentState extends State<enrollStudent> {
                                     //for alve : this is the listener for inkwell.
                                     onTap: (){
                                       setState(() {
-
+                                        if(selectedStudent.contains(docIDs[index])){
+                                          selectedStudent.remove(docIDs[index]);
+                                          removeStudent(docIDs[index]);
+                                        }
+                                        else{
+                                          selectedStudent.add(docIDs[index]);
+                                          addStudent(docIDs[index]);
+                                        }
                                       });
                                     },
                                     title: GetStudentInfo(documentId : docIDs[index]),
@@ -94,13 +144,13 @@ class _enrollStudentState extends State<enrollStudent> {
                                       height: 40,
                                       width: 80,
                                       decoration: BoxDecoration(
-                                        color: Color(0xFF001a33),
+                                        color: selectedStudent.contains(docIDs[index])?Colors.red:Color(0xFF001a33),
                                         borderRadius: BorderRadius.circular(30.0),
                                       ),
                                       child: Center(
                                         child: Text(
                                           //for alve : use a conditional here to convert add to remove and vice versa
-                                          'Add',
+                                          selectedStudent.contains(docIDs[index])?'Remove':'Add',
                                           style: TextStyle(
                                             color: Colors.white,
                                           ),

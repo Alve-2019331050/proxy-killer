@@ -71,8 +71,8 @@ class _ManageCourseState extends State<ManageCourse> {
                         if(identical(previous,null)==false){
                           myWidgets.add(Column(
                               children:[
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                Wrap(
+                                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
                                     CourseCard(name:previous['name'],id:previous['id'],dept:previous['dept'],teacher:previous['teacher'],option: 0),
                                     SizedBox(width: 20.0,),
