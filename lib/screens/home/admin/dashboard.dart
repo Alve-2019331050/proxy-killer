@@ -56,7 +56,7 @@ class _DashboardState extends State<Dashboard> {
                               else {
                                 print(snapshot.data.length);
                                 return Card(
-                                  color: const Color.fromARGB(0, 0, 0, 0),
+                                  color: Color(0xFF001a33),//const Color.fromARGB(0, 0, 0, 0),
                                   //elevation: 2.0,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8.0),
@@ -77,7 +77,7 @@ class _DashboardState extends State<Dashboard> {
                                           Text(
                                             "Student",
                                             style: TextStyle(
-                                              color: Color(0xFF001a33),
+                                              color: Colors.white,//Color(0xFF001a33),
                                               fontSize: 25.0,
                                             ),
                                           ),
@@ -85,7 +85,7 @@ class _DashboardState extends State<Dashboard> {
                                           Text(
                                             snapshot.data.length.toString(),
                                             style: TextStyle(
-                                              color: Color(0xFF001a33),
+                                              color: Colors.white,// Color(0xFF001a33),
                                               fontSize: 40.0,
                                             ),
                                           ),
@@ -109,7 +109,7 @@ class _DashboardState extends State<Dashboard> {
                               }
                               else{
                                 return Card(
-                                  color: const Color.fromARGB(0, 0, 0, 0),
+                                  color: Color(0xFF001a33),//const Color.fromARGB(0, 0, 0, 0),
                                   //elevation: 2.0,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8.0),
@@ -130,7 +130,7 @@ class _DashboardState extends State<Dashboard> {
                                           Text(
                                             "Teacher",
                                             style: TextStyle(
-                                              color: Color(0xFF001a33),
+                                              color: Colors.white,//Color(0xFF001a33),
                                               fontSize: 25.0,
                                             ),
                                           ),
@@ -138,7 +138,7 @@ class _DashboardState extends State<Dashboard> {
                                           Text(
                                             snapshot.data.length.toString(),
                                             style: TextStyle(
-                                              color: Color(0xFF001a33),
+                                              color: Colors.white,//Color(0xFF001a33),
                                               fontSize: 40.0,
                                             ),
                                           ),
@@ -166,7 +166,7 @@ class _DashboardState extends State<Dashboard> {
                               }
                               else{
                                 return Card(
-                                  color: const Color.fromARGB(0, 0, 0, 0),
+                                  color: Color(0xFF001a33), //const Color.fromARGB(0, 0, 0, 0),
                                   //elevation: 2.0,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8.0),
@@ -187,7 +187,7 @@ class _DashboardState extends State<Dashboard> {
                                           Text(
                                             "Course",
                                             style: TextStyle(
-                                              color: Color(0xFF001a33),
+                                              color: Colors.white,//Color(0xFF001a33),
                                               fontSize: 25.0,
                                             ),
                                           ),
@@ -195,7 +195,7 @@ class _DashboardState extends State<Dashboard> {
                                           Text(
                                             snapshot.data.length.toString(),
                                             style: TextStyle(
-                                              color: Color(0xFF001a33),
+                                              color: Colors.white,//Color(0xFF001a33),
                                               fontSize: 40.0,
                                             ),
                                           ),

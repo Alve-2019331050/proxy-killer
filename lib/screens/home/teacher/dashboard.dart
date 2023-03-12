@@ -76,8 +76,8 @@ class _DashboardState extends State<Dashboard> {
                               if(identical(previous,null)==false){
                                 myWidgets.add(Column(
                                   children:[
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    Wrap(
+                                      // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                       children: [
                                         CourseCard(name:previous['name'],id:previous['id'],dept:previous['dept'],teacher:previous['teacher'],option: 1),
                                         SizedBox(width: 20.0,),
@@ -94,7 +94,7 @@ class _DashboardState extends State<Dashboard> {
                               }
                             }
                             if(identical(previous, null)==false){
-                              myWidgets.add(Row(
+                              myWidgets.add(Wrap(
                                 children: [
                                   CourseCard(name:previous['name'],id:previous['id'],dept:previous['dept'],teacher:previous['teacher'],option: 1),
                                   SizedBox(width: 20.0,),

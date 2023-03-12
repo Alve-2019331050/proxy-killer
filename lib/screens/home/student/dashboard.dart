@@ -75,7 +75,7 @@ class _DashboardState extends State<Dashboard> {
                         }
                       }
                       if(identical(previous, null)==false){
-                        myWidgets.add(Row(
+                        myWidgets.add(Wrap(
                           // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               CourseCard(name:previous['name'],id:previous['course'].substring(4),dept:previous['course'].substring(0,3),teacher:previous['teacher'],option: 2),
