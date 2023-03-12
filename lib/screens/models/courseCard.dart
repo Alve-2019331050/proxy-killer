@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proxy_killer/screens/home/teacher/enroll_student.dart';
 
+import '../home/student/showAttendance.dart';
 import '../shared/bottomSheet.dart';
 
 class CourseCard extends StatefulWidget {
@@ -93,6 +94,12 @@ class _CourseCardState extends State<CourseCard> {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => enrollStudent(dept:widget.dept,id:widget.id)),
+              );
+            }
+            else if(widget.option == 2){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context)=> showAttendance(course:widget.dept+' '+widget.id)),
               );
             }
           },

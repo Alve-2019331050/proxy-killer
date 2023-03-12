@@ -111,6 +111,12 @@ class _AttendanceState extends State<Attendance> {
     var data = await FirebaseFirestore.instance.collection("classes").get();
     return data.docs;
   }
+  
+  Future checkRelation(dynamic reg) async{
+    var ref = await FirebaseFirestore.instance.collection('takes').where('course',isEqualTo:dropDownValue)
+        .where('registration number',isEqualTo:reg).get();
+    return ref;
+  }
 
   bool check(var classinfo, var student) {
     if (classinfo['day'] != student.child('day').value) return false;
@@ -136,7 +142,6 @@ class _AttendanceState extends State<Attendance> {
   Widget build(BuildContext context) {
     String? uid = FirebaseAuth.instance.currentUser?.uid;
     List<dynamic> classInfo = [];
-    List<dynamic> attendanceList = [];
     return Scaffold(
       backgroundColor: Colors.blue[50],
       body: Padding(
@@ -169,7 +174,15 @@ class _AttendanceState extends State<Attendance> {
                               'minute': snapshot.child('minute').value,
                               'period': snapshot.child('designation').value,
                             };
-                            sendData(data);
+                            FutureBuilder(
+                              future:checkRelation('2019331' + reg_no),
+                                builder:(context,snapshot){
+                                  if(snapshot.hasData){
+                                    sendData(data);
+                                  }
+                                  return Container();
+                                }
+                            );
                           }
                         }
                         return Container();
