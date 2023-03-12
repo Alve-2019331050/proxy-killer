@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1025155376064-j046e0it397re00ti0j4k7s4qjqar8gl.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1025155376064-j046e0it397re00ti0j4k7s4qjqar8gl</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCj28q4pHlgDkNBdueb7NfYRj_x7ANPJ0w</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1025155376064</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.proxyKiller</string>
+	<key>PROJECT_ID</key>
+	<string>proxy-killer-2356e</string>
+	<key>STORAGE_BUCKET</key>
+	<string>proxy-killer-2356e.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1025155376064:ios:96f29b5a1f26c9b70dde25</string>
+	<key>DATABASE_URL</key>
+	<string>https://proxy-killer-2356e-default-rtdb.asia-southeast1.firebasedatabase.app</string>
+</dict>
+</plist>

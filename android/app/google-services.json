@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "1025155376064",
+    "firebase_url": "https://proxy-killer-2356e-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "proxy-killer-2356e",
     "storage_bucket": "proxy-killer-2356e.appspot.com"
   },
@@ -29,6 +30,13 @@
             {
               "client_id": "1025155376064-6i0d6i647tpmft8hj4qfds8l945jlgvj.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1025155376064-j046e0it397re00ti0j4k7s4qjqar8gl.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.proxyKiller"
+              }
             }
           ]
         }

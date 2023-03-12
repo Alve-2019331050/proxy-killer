@@ -1,6 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:proxy_killer/firebase_options.dart';
 import 'package:proxy_killer/screens/auth_page.dart';
 import 'package:proxy_killer/screens/home/teacher/home.dart';
 import 'package:proxy_killer/screens/home/admin/home.dart';
@@ -14,7 +15,10 @@ import 'screens/shared/change_password.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+      name: 'proxy-killer',
+      options: DefaultFirebaseOptions.currentPlatform
+  );
   runApp(const MyApp());
 }
 

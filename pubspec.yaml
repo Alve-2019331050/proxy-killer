@@ -43,6 +43,8 @@ dependencies:
   ionicons: ^0.2.2
   settings_ui: ^2.0.2
   fluttertoast: ^8.2.1
+  firebase_database: ^10.0.14
+  firebase_core: ^2.7.1
 
 dev_dependencies:
   flutter_test:
