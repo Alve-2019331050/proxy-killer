@@ -31,35 +31,37 @@ class _ChangePasswordState extends State<ChangePassword> {
         ),
         backgroundColor: const Color(0xFF01011a),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 200),
-        child: SingleChildScrollView(
-          //scrollDirection: Axis.vertical,
-          child: Column(
-            children: [
-              TextFormField(
-                controller: emailController,
-                decoration: const InputDecoration(
-                  hintText: 'Email',
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 200),
+          child: SingleChildScrollView(
+            //scrollDirection: Axis.vertical,
+            child: Column(
+              children: [
+                TextFormField(
+                  controller: emailController,
+                  decoration: const InputDecoration(
+                    hintText: 'Email',
+                  ),
                 ),
-              ),
-              const SizedBox(height: 40),
-              MyButton(
-                buttonText: 'Send Restoring Email',
-                onTap: (){
-                  //print('email');
-                  auth.sendPasswordResetEmail(
-                      email: emailController.text.toString())
-                      .then((value){
-                        Utils().toastMessage(
-                            'Email to reset password has been sent to your email address.Please check email.'
-                        );
-                  }).onError((error, stackTrace){
-                    Utils().toastMessage(error.toString());
-                  });
-                },
-              ),
-            ],
+                const SizedBox(height: 40),
+                MyButton(
+                  buttonText: 'Send Restoring Email',
+                  onTap: (){
+                    //print('email');
+                    auth.sendPasswordResetEmail(
+                        email: emailController.text.toString())
+                        .then((value){
+                          Utils().toastMessage(
+                              'Email to reset password has been sent to your email address.Please check email.'
+                          );
+                    }).onError((error, stackTrace){
+                      Utils().toastMessage(error.toString());
+                    });
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

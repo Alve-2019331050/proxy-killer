@@ -39,8 +39,8 @@ class _CourseCardState extends State<CourseCard> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top:5.0),
-      width:175,
-      height:175,
+      width:150,
+      height:200,
       decoration: BoxDecoration(
         color: Color(0xFF001a33),
         borderRadius: BorderRadius.circular(15),

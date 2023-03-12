@@ -121,7 +121,7 @@ class _showAttendanceState extends State<showAttendance> {
                         if (snapshot.hasData) {
                           totClass = snapshot.data!.docs.length;
                           return Card(
-                            color: Colors.black26,
+                            color: Color(0xFF001a33),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8.0),
                             ),
@@ -138,7 +138,7 @@ class _showAttendanceState extends State<showAttendance> {
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 25,
-                                          color: Color(0xFF001a33),
+                                          color: Colors.white,
                                         ),
                                       ),
                                     ),
@@ -149,7 +149,7 @@ class _showAttendanceState extends State<showAttendance> {
                                         style: TextStyle(
                                           fontSize: 27,
                                           fontWeight: FontWeight.bold,
-                                          color: Color(0xFF001a33),
+                                          color: Colors.white,
                                         ),
                                       ),
                                     )
@@ -168,7 +168,7 @@ class _showAttendanceState extends State<showAttendance> {
                         if (snapshot.hasData) {
                           appeared = snapshot.data!.docs.length;
                           return Card(
-                            color: Colors.black26,
+                            color: Color(0xFF001a33),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8.0),
                             ),
@@ -181,11 +181,11 @@ class _showAttendanceState extends State<showAttendance> {
                                     SizedBox(height: 3),
                                     FittedBox(
                                       child: Text(
-                                        'You Appeared',
+                                        'Appeared',
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 25,
-                                          color: Color(0xFF001a33),
+                                          color: Colors.white,
                                         ),
                                       ),
                                     ),
@@ -196,7 +196,7 @@ class _showAttendanceState extends State<showAttendance> {
                                         style: TextStyle(
                                           fontSize: 25,
                                           fontWeight: FontWeight.bold,
-                                          color: Color(0xFF001a33),
+                                          color: Colors.white,
                                         ),
                                       ),
                                     )
